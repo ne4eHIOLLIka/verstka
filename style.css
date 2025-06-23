@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+/* General styles */
+body {
+    font-family: "Montserrat";
+    font-size: 1em;
+}
+html{
+    scroll-behavior: smooth;
+}
+.menu-item a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* верхня секція */
+
+.header-container {
+    display: flex;
+    align-items: center;
+    padding: 2.2em 3.94em;
+    justify-content: space-between;
+    position: fixed;
+    background-color: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+.menu-list {
+   display: flex;
+   align-items: center;
+}
+
+.menu-item {
+    margin-left: 3.1em;
+}
+.blue-button {
+    text-transform: uppercase;
+    background-color: #7AE5FD;
+    padding: 1.15em 1.94em;
+    border-radius: 4.8em;
+    margin-left: 1.3em;
+    border: none;
+}
+
+
+
+/* 1 секція */
+
+
+
+.first-screen {
+    background-image: url('./assets/images/Frame12146.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15vh;
+}
+.first-screen-container {
+    width: 40%;
+}
+.main-title {
+    color: white;
+    font-weight: 800;
+    font-size: 4.06em;
+    line-height: 0.95;
+    margin-bottom: 2vh ;
+}
+.white-button{
+    background-color:white; 
+}
+.main-description{
+    margin-bottom: 2vh;
+}
+
+
+
+
+/* 2 секція */
+
+
+.section2 {
+    width: 90%;
+    height: 70vh;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 0 5vw;
+}
+.section2-container {
+    text-align: center;
+    width: 100%;
+}
+.main-title-2sect {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 4em;
+    line-height: 1.2;
+    margin-bottom: 1vh;
+    
+}
+.center-text {
+    font-weight: 400;
+    font-size: 1.5em;
+    margin-bottom: 1vh;
+}
+.blue-text {
+     font-size: 1.2em;
+    color: #73A6B1;
+}
+
+
+
+
+/* 3 секція */
+
+.block-img {
+    max-width: 40vw;
+}
+.description-screen {
+    padding: 5vw;
+}
+.description-block {
+    display: flex;
+    flex-direction: row;
+    background-color: #F1FDFF;
+    padding: 3vh 3vw;
+    margin-bottom: 5vh;
+}
+.flex-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.desc-header{
+    text-transform: uppercase;
+   font-weight: 400;
+    font-size: 2em;
+    line-height: 1.2;
+    margin-bottom: 1vh;
+    width: 60%;
+} 
+.desc-text{
+  font-weight: 400;
+    font-size: 1em;
+    line-height: 1.2;
+    margin-bottom: 1vh;
+    width: 60%;   
+}
+@media screen and (max-width: 500px) {
+    body {
+        background-color: grey;
+    }
+
+    .description-block {
+        flex-direction: column;
+    }
+} 
+.description-screen .blue-button{
+    display: block;
+    margin: 2rem auto auto;
+}
+
+
+
+
+
+
+
+/* 4 секція */
+
+.mission-section {
+    height: 90vh;
+    padding: 5vh 5vw;
+}
+
+.mission-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #F1FDFF;
+    padding: 3vh 3vw;
+    margin-top: 7vh;
+}
+
+.mission-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    width: 40%;
+}
+.mission-images {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 50%;
+}
+
+.img-fon {
+width: 100%;
+}
+
+.img-smiley {
+    position: absolute;
+    top: -35%;
+    width: 65%;
+}
+
+/* 5 секція */
+
+.support-section{
+    display: flex;
+    height: 70vh;
+    justify-content: center;
+    text-align: center;
+}
+.support-text{
+    margin-bottom: 6vh;
+}
+.vector{
+    color: #9ad2de;
+}
+/* 6 секція */
+
+.contact-section{
+    background: #F9FADF;
+    padding: 5vh 5vw;
+}
+.contact-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 25vh;
+    margin-top: 3vh;
+    margin-bottom: 15vh;
+}
+.bold-text{
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+}
+.contact-left,.contact-right {
+    margin-top: 3vh;
+    width: 40%;
+}
+.contact-left{
+    text-align: center;
+}
+.contact-subtext{
+    font-weight: 400;
+    font-size: 1em;
+    margin-bottom: 5vh;
+}
+
+
+
+.contact-subscribe{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    background:white;
+    margin-bottom: 5vh;
+    padding: 2vh 2vw;
+}
+.subscribe-left{
+    margin-top: 5vh;
+    width: 40%;
+margin-bottom: 5vh;
+}
+.subscribe-right{
+    margin-top: 5vh;
+    width: 45%;
+    margin-bottom: 5vh;
+}
+.subscribe-title{
+    font-weight: 400;
+    font-size: 1.5em;
+    margin-bottom: 5vh;
+    width: 60%;
+}
+.subscribe-form{
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+.email-img{
+    width: 85%;
+}
+.input{
+   text-transform: uppercase;
+   text-align: left;
+   background-color: #F9FADF;
+   padding: 1.15em 1.94em;
+   border-radius: 4.8em;
+   margin-left: 0;
+   border: none; 
+}
+.subscribe-right .blue-button{
+    margin-left: 0;
+}
+
+
+
+
+
+
+
