@@ -26,15 +26,53 @@
       padding: 0.5rem 1rem;
       margin-left: 0.5rem;
     }
+    #task-list {
+      height: 50vh;
+      overflow-y: auto;
+      border: 2px solid #ccc;
+      border-radius: 12px;
+      padding: 0.5rem;
+      box-sizing: border-box;
+    }
     ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
     li {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       padding: 0.5rem;
       border-bottom: 1px solid #ccc;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+    li .task-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    li .task-meta {
+      font-size: 0.85rem;
+      color: #555;
+    }
+    li .task-main {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1;
+    }
+    .star {
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 1.5rem;
+      text-align: center;
+    }
+    .star.selected {
+      background-color: gold;
     }
     li.completed span {
       text-decoration: line-through;
@@ -60,14 +98,37 @@
     }
 
     async function renderTasks() {
-      const tasks = await fetchTasks();
+      let tasks = await fetchTasks();
+      tasks.sort((a, b) => (b.favorite ? 1 : 0) - (a.favorite ? 1 : 0));
+
       list.innerHTML = '';
       tasks.forEach(task => {
         const li = document.createElement('li');
         li.className = task.completed ? 'completed' : '';
 
+        const row = document.createElement('div');
+        row.className = 'task-row';
+
+        const main = document.createElement('div');
+        main.className = 'task-main';
+
+        const star = document.createElement('span');
+        star.innerHTML = task.favorite ? '★' : '☆';
+        star.className = 'star';
+        star.style.color = task.favorite ? 'gold' : '#aaa';
+        star.onclick = async () => {
+          await fetch(`${API_URL}/${task.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ favorite: !task.favorite })
+          });
+          renderTasks();
+        };
+
+
         const span = document.createElement('span');
         span.textContent = task.text;
+        span.style.wordBreak = 'break-word';
         span.onclick = async () => {
           await fetch(`${API_URL}/${task.id}`, {
             method: 'PUT',
@@ -77,6 +138,13 @@
           renderTasks();
         };
 
+        main.appendChild(star);
+        main.appendChild(span);
+
+        const meta = document.createElement('div');
+        meta.className = 'task-meta';
+        meta.textContent = task.timestamp || '';
+
         const btn = document.createElement('button');
         btn.textContent = 'Видалити';
         btn.onclick = async () => {
@@ -84,18 +152,30 @@
           renderTasks();
         };
 
-        li.appendChild(span);
-        li.appendChild(btn);
+        row.appendChild(meta);
+        row.appendChild(btn);
+
+        li.appendChild(main);
+        li.appendChild(row);
         list.appendChild(li);
       });
     }
 
     form.onsubmit = async (e) => {
       e.preventDefault();
+
+      const now = new Date();
+      const timestamp = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' ' +
+                        now.toLocaleDateString('uk-UA');
+
       await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: input.value })
+        body: JSON.stringify({
+          text: input.value,
+          timestamp: timestamp,
+          favorite: false
+        })
       });
       input.value = '';
       renderTasks();
